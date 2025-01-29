@@ -24,19 +24,20 @@ jobs:
 
       - name: Deploy to server
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SERVER_USER: ${{ secrets.SERVER_USER }} 
-          SERVER_IP: ${{ secrets.SERVER_IP }}
+            SSH_PASSWORD: zCjtu\*p(*p9kK1?>n9/>
+            SERVER_USER: root
+            SERVER_IP: 159.203.157.181
         run: |
-          sudo apt-get install -y openssh-client
-          mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
+            # Instalar o cliente SSH
+            sudo apt-get install -y openssh-client
 
-          ssh $SERVER_USER@$SERVER_IP << 'EOF'
+            # Adicionar o host à lista de conhecidos
+            ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
+
+            # Utilizar sshpass para passar a senha no SSH
+            sshpass -p "$SSH_PASSWORD" ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP << 'EOF'
             cd /var/www/blockchain/
             git pull origin main
             npm install
             pm2 restart app.js
-          EOF
+            EOF
