@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "express": "^4.21.2",
+    "pqcrypto": "^1.0.1"
+  }
+}
