@@ -19,7 +19,7 @@ class P2P {
         this.sockets.push(socket);
         console.log('Novo nó conectado.');
 
-        this.sendBlockchain(socket);
+        // this.sendBlockchain(socket);
 
         socket.on('message', (data) => {
             console.log('Mensagem recebida do servidor:', data);

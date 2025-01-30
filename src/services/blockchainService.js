@@ -1,5 +1,4 @@
 const Block = require('../models/block');
-const crypto = require('crypto');
 
 class Blockchain {
     constructor() {

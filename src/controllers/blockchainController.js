@@ -1,9 +1,6 @@
 const blockchainService = require('../services/blockchainService');
-const P2P = require('../utils/p2p');
 
-const p2p = new P2P(blockchainService);
-
-const addBlock = (req, res) => {
+const addBlock = (req, res, p2p) => {
     const data = req.body.data;
 
     if (!data) {
@@ -12,8 +9,9 @@ const addBlock = (req, res) => {
 
     blockchainService.addBlock(data);
     
+    // Agora p2p é passado corretamente
     p2p.broadcastBlock(blockchainService.chain[blockchainService.chain.length - 1]);
-    
+
     res.status(200).send({
         message: 'Block added successfully',
         blockchain: blockchainService.chain,
