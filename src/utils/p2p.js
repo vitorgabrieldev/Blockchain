@@ -1,4 +1,5 @@
 const WebSocket = require('ws');
+const crypto = require('crypto'); // Para o hash
 
 class P2P {
     constructor(blockchain) {
@@ -19,15 +20,30 @@ class P2P {
         this.sockets.push(socket);
         console.log('Novo nó conectado.');
 
-        // this.sendBlockchain(socket);
+        this.sendBlockchain(socket);
 
         socket.on('message', (data) => {
             console.log('Mensagem recebida do servidor:', data);
             const message = JSON.parse(data);
-        
+
             if (message.type === 'newBlock') {
                 console.log('Novo bloco recebido:', message.block);
                 this.blockchain.addBlock(message.block.data);
+            }
+
+            if (message.type === 'blockchain') {
+                console.log('Blockchain recebida:', message.blockchain);
+
+                if (this.isValidBlockchain(message.blockchain)) {
+                    if (message.blockchain.length > this.blockchain.chain.length) {
+                        console.log('Blockchain recebida é mais longa. Atualizando...');
+                        this.blockchain.chain = message.blockchain;
+                    } else {
+                        console.log('Blockchain recebida não é mais longa. Ignorando.');
+                    }
+                } else {
+                    console.log('Blockchain recebida é inválida. Ignorando.');
+                }
             }
         });
 
@@ -45,7 +61,11 @@ class P2P {
         console.log('Enviando blockchain:', this.blockchain.chain);
         try {
             if (this.blockchain.chain && this.blockchain.chain.length > 0) {
-                socket.send(JSON.stringify(this.blockchain.chain));
+                const message = {
+                    type: 'blockchain',
+                    blockchain: this.blockchain.chain
+                };
+                socket.send(JSON.stringify(message));
             } else {
                 console.log('Blockchain não está inicializada ou está vazia.');
             }
@@ -72,7 +92,7 @@ class P2P {
     connectToPeer(peerAddress) {
         console.log(`Tentando conectar ao nó: ${peerAddress}`);
         const socket = new WebSocket(peerAddress);
-        
+
         socket.on('open', () => {
             console.log(`Conectado ao nó: ${peerAddress}`);
             this.connectSocket(socket);
@@ -89,6 +109,43 @@ class P2P {
             this.sockets.splice(index, 1);
         }
     }
+
+    isValidBlockchain(receivedBlockchain) {
+        for (let i = 1; i < receivedBlockchain.length; i++) {
+            const currentBlock = receivedBlockchain[i];
+            const previousBlock = receivedBlockchain[i - 1];
+
+            if (currentBlock.previousHash !== previousBlock.hash) {
+                console.log(`Erro: Hash anterior inválido no bloco ${currentBlock.index}`);
+                return false;
+            }
+
+            if (currentBlock.hash !== this.generateBlockHash(currentBlock)) {
+
+                console.log(currentBlock.hash);
+                console.log(this.generateBlockHash(currentBlock));
+
+                console.log(`Erro: Hash inválido no bloco ${currentBlock.index}`);
+                return false;
+            }
+        }
+        return true;
+    }
+
+    generateBlockHash(block) {
+        const blockData = JSON.stringify({
+            index: block.index,
+            timestamp: block.timestamp,
+            data: block.data,
+            previousHash: block.previousHash,
+            nonce: block.nonce
+        });
+
+        console.log(blockData);
+
+        return crypto.createHash('sha256').update(blockData).digest('hex');
+    }
+    
 }
 
 module.exports = P2P;
