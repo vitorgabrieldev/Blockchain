@@ -21,6 +21,9 @@ p2p.connectToPeer('ws://159.203.157.181:6001');
 app.post('/addBlock', (req, res) => blockchainController.addBlock(req, res, p2p));
 app.get('/getBlockchain', (req, res) => blockchainController.getBlockchain(req, res, blockchain));
 app.get('/validateBlockchain', (req, res) => blockchainController.validateBlockchain(req, res, blockchain));
+app.get('/peers', (req, res) => {
+    res.json(p2p.getPeers());
+});
 
 app.listen(port, () => {
     console.log(`Blockchain API running at http://localhost:${port}`);
