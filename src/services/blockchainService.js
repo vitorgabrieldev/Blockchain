@@ -19,14 +19,15 @@ class Blockchain {
 
     validateIntegrity() {
         for (let i = 1; i < this.chain.length; i++) {
-            const currentBlock = this.chain[i];
-            const previousBlock = this.chain[i - 1];
-
+            let currentBlock = Object.assign(new Block(), this.chain[i]);
+            let previousBlock = this.chain[i - 1];
+    
             if (currentBlock.previousHash !== previousBlock.hash) return false;
             if (currentBlock.hash !== currentBlock.generateBlockHash()) return false;
         }
         return true;
     }
+    
 }
 
 const blockchain = new Blockchain();

@@ -121,10 +121,6 @@ class P2P {
             }
 
             if (currentBlock.hash !== this.generateBlockHash(currentBlock)) {
-
-                console.log(currentBlock.hash);
-                console.log(this.generateBlockHash(currentBlock));
-
                 console.log(`Erro: Hash inválido no bloco ${currentBlock.index}`);
                 return false;
             }
@@ -133,17 +129,9 @@ class P2P {
     }
 
     generateBlockHash(block) {
-        const blockData = JSON.stringify({
-            index: block.index,
-            timestamp: block.timestamp,
-            data: block.data,
-            previousHash: block.previousHash,
-            nonce: block.nonce
-        });
+        const data = block.index + block.timestamp + JSON.stringify(block.data) + block.previousHash + block.nonce;
 
-        console.log(blockData);
-
-        return crypto.createHash('sha256').update(blockData).digest('hex');
+        return crypto.createHash('sha256').update(data).digest('hex');
     }
     
 }
