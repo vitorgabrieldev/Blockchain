@@ -1,0 +1,17 @@
+{
+  "name": "vitorgabrieldev_blockchain_v2",
+  "version": "1.0.0",
+  "description": "Development of a decentralized blockchain",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "express": "^4.21.2",
+    "pqcrypto": "^1.0.1",
+    "ws": "^8.18.0"
+  },
+  "author": "Vitor Gabriel de Oliveira <vitorgabrieldeoliveiradev@gmail.com>",
+  "license": "MIT"
+}
