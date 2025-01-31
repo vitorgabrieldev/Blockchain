@@ -16,7 +16,7 @@ const blockchain = new Blockchain();
 const p2p = new P2P(blockchainService);
 p2p.listen(6001);
 
-p2p.connectToPeer('ws://159.203.157.181:6001');
+p2p.connectToPeer('ws://00.000.000.000:6001'); // Troque para o ip de outro peer conectado a rede
 
 app.post('/addBlock', (req, res) => blockchainController.addBlock(req, res, p2p));
 app.get('/getBlockchain', (req, res) => blockchainController.getBlockchain(req, res, blockchain));

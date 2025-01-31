@@ -9,7 +9,6 @@ const addBlock = (req, res, p2p) => {
 
     blockchainService.addBlock(data);
     
-    // Agora p2p é passado corretamente
     p2p.broadcastBlock(blockchainService.chain[blockchainService.chain.length - 1]);
 
     res.status(200).send({
