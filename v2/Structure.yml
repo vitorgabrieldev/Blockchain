@@ -1,0 +1,60 @@
+# General project details
+project_name: "Blockchain - V2"
+description: "Development of a decentralized blockchain that uses AI for optimization and analysis."
+autor: "Vitor Gabriel de Oliveira <vitorgabrieldeoliveiradev@gmail.com>"
+# Main objectives
+objectives:
+  - "Create a functional P2P blockchain"
+  - "Develop a consensus mechanism (e.g., Proof of Work, PWS)"
+  - "Integrate AI for energy consumption optimization"
+  - "Implement smart contracts to automate transactions"
+  - "Integrate predictive analysis using AI"
+
+# Project phases
+phases:
+  - phase: "Planning"
+    description: "Define project scope and initial specifications"
+    status: "Completed"
+    start_date: "2025-01-31"
+    end_date: "2025-01-31"
+
+  - phase: "Blockchain Development"
+    description: "Build P2P network, validate blocks, create API, and create consensus protocol."
+    status: "In Progress"
+    start_date: "2025-01-31"
+    end_date: "***-**-**"
+
+  - phase: "AI Development"
+    description: "Develop and integrate AI to optimize energy consumption and analyze data"
+    status: "Pending"
+    start_date: "***-**-**"
+    end_date: "***-**-**"
+
+  - phase: "Smart Contracts"
+    description: "Implement smart contracts to automate transactions"
+    status: "Pending"
+    start_date: "***-**-**"
+    end_date: "***-**-**"
+
+# Dependencies
+dependencies:
+  - "Cryptography libraries (Crypto)"
+  - "Machine Learning framework (TensorFlow and PyTorch)"
+  - "Blockchain platform (Create Local)"
+  - "Cloud services for processing (AWS and Digital Ocean)"
+
+# Resources
+resources:
+  - "Server to host blockchain nodes - Digital Ocean"
+  - "Computing power for AI training - AWS"
+  - "Security testing and auditing - Distributed network"
+
+challenges:
+  - "Proof of Work energy consumption is high"
+  - "AI integration with blockchain requires time optimization"
+  - "Efficient management of transaction data"
+
+# Additional notes
+notes:
+  - "Consider switching to Proof of Stake to reduce energy consumption"
+  - "Plan to integrate more complex smart contracts in the future"
