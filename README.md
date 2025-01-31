@@ -44,3 +44,13 @@ The V2 blockchain introduces a more energy-efficient consensus mechanism that co
 ### Predictive Analytics
 
 AI models will analyze transaction data and blockchain metrics to predict network congestion, energy spikes, and potential security risks. This will help in proactive decision-making for optimizing blockchain performance.
+
+### Learn More About Blockchain and AI:
+
+1. **IBM Blockchain**: 
+   - Learn how blockchain technology is transforming industries and how it can be applied to various sectors, from financial services to supply chains.
+   - [Explore IBM Blockchain](https://www.ibm.com/think/topics/blockchain?mhsrc=ibmsearch_a&mhq=blockchain)
+
+2. **IBM Blockchain and AI**: 
+   - Discover how AI can enhance blockchain solutions by providing predictive analytics, improving efficiency, and enabling automated decision-making.
+   - [Explore Blockchain and AI by IBM](https://www.ibm.com/think/topics/blockchain-ai)
