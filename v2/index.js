@@ -12,7 +12,6 @@ const bodyParser = require('body-parser');
 const blockchainController = require('./core/src/controllers/blockchainController');
 const Core = require('./core/core');
 const config = require('./core/config/config');
-const { exec } = require('child_process');
 const postCLI = process.argv[2];
 
 /*----------------------------------

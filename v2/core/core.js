@@ -13,6 +13,7 @@ const P2P = require('./src/utils/p2p');
 const blockchainService = require('./src/services/blockchainService');
 const config = require('./config/config');
 const peer = process.argv[3];
+const peerlist = process.argv[4];
 
 /*----------------------------------
 |  Core class definition           |
@@ -30,7 +31,8 @@ class Core {
     
     // Connect to an existing peer (e.g., external peer IP)
     if (config.peerPublic.length > 1) {
-      this.p2p.connectToPeer(config.peerPublic);
+      var peerConnection = peerlist || config.peerPublic;
+      this.p2p.connectToPeer(peerConnection);
     } else if(config.environment === "development") {
       console.error("ERROR: Host de peer pública não está configurado em 'core/config/config.js'.");
     }

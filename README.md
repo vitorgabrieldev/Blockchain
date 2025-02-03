@@ -114,8 +114,12 @@ node index.js
 **Running Blockchain - V2**
 ```
 cd v2
-node index.js
+npm run start 8080 6001 ws://000.000.000.000:6001
 ```
+
+**npm run start [port] [port peer] [host peer public]**
+
+#
 
 ### Endpoints:
 
