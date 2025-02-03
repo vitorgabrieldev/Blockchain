@@ -54,3 +54,89 @@ AI models will analyze transaction data and blockchain metrics to predict networ
 2. **IBM Blockchain and AI**: 
    - Discover how AI can enhance blockchain solutions by providing predictive analytics, improving efficiency, and enabling automated decision-making.
    - [Explore Blockchain and AI by IBM](https://www.ibm.com/think/topics/blockchain-ai)
+
+
+<br><br>
+
+## Prerequisites
+Ensure you have the following installed on your system:
+
+| Technology | Description | Download Link |
+|------------|-------------|---------------| 
+|Node.js (v18 LTS Recommended)| JavaScript runtime required to execute the blockchain system. | [Download](https://nodejs.org/pt/blog/release/v18.12.0) |
+
+**Clone the Repository:**
+```
+git clone https://github.com/vitorgabrieldevk/Blockchain.git
+cd Blockchain
+```
+
+**Install Dependencies:**
+```
+npm install
+```
+ou
+```
+yarn install
+```
+
+#
+
+> 💡 **Note:** Regardless of whether you are going to use the v1 or v2 model, you will need to have an instance/peer already running on the blockchain.
+
+### Configuring the first instance:
+
+**V1**
+  **index.js will have the function:**
+```
+  p2p.connectToPeer('ws://00.000.000.000:6001');
+```
+
+> 📌 **INFO:** Comment or remove it from the code to start the first instance!
+
+**And then in the next instance created, pass the IP of the first one with the prefix ws:// and the pre-configured port (by default: 6001) into the function.**
+
+### **Within the v2 model, just remove the PeerPublic value within the file:**
+```
+  /v2/core/config/config.js
+```
+
+> 📌 **INFO:** The reason it is necessary to remove it in the first instance is because using this IP it connects to the peer network, but since it is the first peer to create the network, there is no way to connect yet.
+
+#
+
+**Running Blockchain - V1**
+```
+cd v1
+node index.js
+```
+
+**Running Blockchain - V2**
+```
+cd v2
+node index.js
+```
+
+### Endpoints:
+
+## API Endpoints  
+
+> 📌 **INFO:** Endpoint rules and parameters can change, consult directly in the route definition files.!
+
+**V1:**
+
+| Method | Endpoint | Description |
+|--------|---------|-------------|
+| **POST** | `/addBlock` | Adds a new block to the blockchain. |
+| **GET** | `/getBlockchain` | Retrieves the full blockchain. |
+| **GET** | `/validateBlockchain` | Validates the integrity of the blockchain. |
+| **GET** | `/peers` | Returns the list of peers connected to the network. |
+
+**V2:**
+
+| Method | Endpoint | Description |
+|--------|---------|-------------|
+| **POST** | `/add-block` | Adds a new block to the blockchain. |
+| **GET** | `/get-chain` | Retrieves the full blockchain. |
+| **GET** | `/validate-chain` | Validates the integrity of the blockchain. |
+| **GET** | `/get-peers` | Returns the list of peers connected to the network. |
