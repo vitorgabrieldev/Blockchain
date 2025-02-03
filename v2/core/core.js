@@ -12,6 +12,7 @@ const Blockchain = require('./src/models/block');
 const P2P = require('./src/utils/p2p');
 const blockchainService = require('./src/services/blockchainService');
 const config = require('./config/config');
+const peer = process.argv[3];
 
 /*----------------------------------
 |  Core class definition           |
@@ -24,7 +25,8 @@ class Core {
   constructor() {
     this.blockchain = new Blockchain();
     this.p2p = new P2P(blockchainService);
-    this.p2p.listen(6001);
+    var peerList = peer || 6001;
+    this.p2p.listen(peerList);
     
     // Connect to an existing peer (e.g., external peer IP)
     if (config.peerPublic.length > 1) {

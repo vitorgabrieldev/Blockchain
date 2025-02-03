@@ -12,6 +12,8 @@ const bodyParser = require('body-parser');
 const blockchainController = require('./core/src/controllers/blockchainController');
 const Core = require('./core/core');
 const config = require('./core/config/config');
+const { exec } = require('child_process');
+const postCLI = process.argv[2];
 
 /*----------------------------------
 |  Initialize core components      |
@@ -22,7 +24,7 @@ const core = new Core();
 |  Create Express app instance     |
 |----------------------------------*/
 const app = express();
-const port = config.port || 8080;
+const port = postCLI || 8080;
 
 /*----------------------------------
 |  Use middleware to parse JSON    |
